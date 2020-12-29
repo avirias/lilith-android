@@ -1,0 +1,2 @@
+com/eden/lilith/BuildConfig.java
+ com.eden.lilith.BuildConfig

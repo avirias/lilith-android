@@ -1,0 +1,3 @@
+include ':lilith'
+include ':app'
+rootProject.name = "lilith-android"
