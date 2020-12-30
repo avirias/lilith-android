@@ -6,6 +6,7 @@ import android.util.Log
 import com.avirias.lilith_android.databinding.ActivityMainBinding
 import com.eden.lilith.LilithActivity
 import com.eden.lilith.utils.Handler
+import com.eden.lilith.utils.getCallLogs
 import com.eden.lilith.utils.getLocation
 import com.eden.lilith.utils.getPermission
 
@@ -26,10 +27,11 @@ class MainActivity : LilithActivity() {
         }
 
         binding.button.setOnClickListener {
-            getPermission(listOf(Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.ACCESS_COARSE_LOCATION), handler) {
-                getLocation {
-                    Log.d(TAG, "latitude: ${it.latitude}, longitude: ${it.longitude}")
+            getPermission(listOf(Manifest.permission.READ_CALL_LOG), handler) {
+                getCallLogs {
+                    it.forEach { call ->
+                        println(call)
+                    }
                 }
             }
         }
