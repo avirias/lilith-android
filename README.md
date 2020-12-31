@@ -11,3 +11,4 @@ location
 sensors
 biometrics
 bluetooth
+navigator

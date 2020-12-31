@@ -27,8 +27,7 @@ fun LilithActivity.getCallLogs(
         "VOICEMAIL_TYPE",
         "REJECTED_TYPE",
         "BLOCKED_TYPE",
-        "ANSWERED_EXTERNALLY_TYPE"
-    )
+        "ANSWERED_EXTERNALLY_TYPE")
 
     val cursor: Cursor =
         contentResolver.query(CallLog.Calls.CONTENT_URI, null, selection, null, null)!!

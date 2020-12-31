@@ -1,14 +1,12 @@
 package com.avirias.lilith_android
 
 import android.Manifest
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import com.avirias.lilith_android.databinding.ActivityMainBinding
 import com.eden.lilith.LilithActivity
-import com.eden.lilith.utils.Handler
-import com.eden.lilith.utils.getCallLogs
-import com.eden.lilith.utils.getLocation
-import com.eden.lilith.utils.getPermission
+import com.eden.lilith.utils.*
 
 class MainActivity : LilithActivity() {
 
@@ -35,6 +33,16 @@ class MainActivity : LilithActivity() {
                 }
             }
         }
+
+
+        navigateTo(SecondActivity::class.java) {
+            it.apply {
+                putExtra("Hello", "World")
+                putExtra("New", 69)
+                putExtra("You", false)
+            }
+        }.go()
+
     }
 
     companion object {
