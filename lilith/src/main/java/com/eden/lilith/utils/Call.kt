@@ -2,10 +2,11 @@ package com.eden.lilith.utils
 
 import android.database.Cursor
 import android.provider.CallLog
+import androidx.annotation.RequiresPermission
 import com.eden.lilith.LilithActivity
 import java.util.*
 
-
+@RequiresPermission(android.Manifest.permission.READ_CALL_LOG)
 fun LilithActivity.getCallLogs(
     callType: CallType = CallType.ALL_CALLS,
     callback: (ArrayList<Call>) -> Unit

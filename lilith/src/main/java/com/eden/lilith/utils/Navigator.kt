@@ -32,12 +32,13 @@ fun LilithActivity.navigateTo(
     )
 }
 
-fun NavigationBuilder.go() {
-    from.startActivity(intent)
-}
 
-data class NavigationBuilder(
-    val from: LilithActivity,
-    val intent: Intent
-)
+class NavigationBuilder(
+    private val from: LilithActivity,
+    private val intent: Intent
+) {
+    fun go() {
+        from.startActivity(intent)
+    }
+}
 

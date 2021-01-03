@@ -5,14 +5,14 @@ import com.eden.lilith.LilithActivity
 
 fun LilithActivity.getPermission(
     permissions: List<String>,
-    handler: Handler,
+    permissionHandler: PermissionHandler,
     onAllPermissionGranted: () -> Unit
 ) {
 
-    val REQUEST_CODE = 40122
+    val rCode = 40122
 
     setCallback { requestCode, p, grantResults ->
-        if (requestCode == REQUEST_CODE) {
+        if (requestCode == requestCode) {
             val toSet = grantResults.toSet()
             if (toSet.size == 1 && toSet.contains(PackageManager.PERMISSION_GRANTED)) {
                 // All granted
@@ -27,15 +27,15 @@ fun LilithActivity.getPermission(
                 }.filter {
                     it != "fuck"
                 }.toList()
-                handler.onPermissionDenied(toList)
+                permissionHandler.onPermissionDenied(toList)
 
             }
         }
     }
-    this.requestPermissions(permissions.toTypedArray(), REQUEST_CODE)
+    this.requestPermissions(permissions.toTypedArray(), rCode)
 }
 
 
-interface Handler {
+interface PermissionHandler {
     fun onPermissionDenied(permissionDenied: List<String>)
 }

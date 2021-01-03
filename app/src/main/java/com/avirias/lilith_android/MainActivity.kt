@@ -1,7 +1,5 @@
 package com.avirias.lilith_android
 
-import android.Manifest
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import com.avirias.lilith_android.databinding.ActivityMainBinding
@@ -18,30 +16,35 @@ class MainActivity : LilithActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val handler = object : Handler {
+        val handler = object : PermissionHandler {
             override fun onPermissionDenied(permissionDenied: List<String>) {
 
             }
         }
 
         binding.button.setOnClickListener {
-            getPermission(listOf(Manifest.permission.READ_CALL_LOG), handler) {
-                getCallLogs {
-                    it.forEach { call ->
-                        println(call)
-                    }
-                }
+//            navigateTo(SecondActivity::class.java) {
+//                it.apply {
+//                    putExtra("Hello", "World")
+//                    putExtra("New", 69)
+//                    putExtra("isLiked", false)
+//                }
+//            }.go()
+
+
+
+            ifOnline {
+                Log.d(TAG, "onCreate: network connected")
+            }.otherWise {
+                Log.d(TAG, "onCreate: network not connected")
             }
+
+
         }
 
 
-        navigateTo(SecondActivity::class.java) {
-            it.apply {
-                putExtra("Hello", "World")
-                putExtra("New", 69)
-                putExtra("You", false)
-            }
-        }.go()
+
+
 
     }
 

@@ -3,12 +3,12 @@ Enjoy life with KTX
 
 // TODO: Edit readme.md
 
-permission
-call logs
-contacts
+permission - done
+call logs - done
+contacts - done
 sms
-location
-sensors
-biometrics
+location - done
+sensors - done
+biometrics - done
 bluetooth
-navigator
+navigator - done
