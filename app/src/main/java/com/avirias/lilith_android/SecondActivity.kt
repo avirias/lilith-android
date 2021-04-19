@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.avirias.lilith_android.databinding.ActivityMainBinding
 import com.eden.lilith.LilithActivity
 import com.eden.lilith.utils.getBoolean
@@ -33,3 +34,4 @@ class SecondActivity : LilithActivity() {
         private const val TAG = "SecondActivity"
     }
 }
+

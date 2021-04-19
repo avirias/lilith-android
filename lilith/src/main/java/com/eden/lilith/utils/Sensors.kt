@@ -33,7 +33,7 @@ fun LilithActivity.getSensor(
     if (sensorManager.getDefaultSensor(sensorType) != null) {
         val mSensor = sensorManager.getDefaultSensor(sensorType)
         sensorManager.registerListener(sensorListener, mSensor, SensorManager.SENSOR_DELAY_NORMAL)
-    } else throw Error("Sensor was not available,Try wrapping getSensor() with sensors().")
+    } else throw Error("Sensor was not available, Try wrapping getSensor() with sensors().")
 
 
 }

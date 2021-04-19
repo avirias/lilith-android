@@ -1,25 +1,22 @@
 package com.eden.lilith
 
+import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import com.eden.lilith.utils.MultiplePermissionObserver
+import com.eden.lilith.utils.PermissionObserver
 
-open class LilithActivity : AppCompatActivity(), ActivityCompat.OnRequestPermissionsResultCallback {
+open class LilithActivity : AppCompatActivity() {
 
-    private lateinit var callback: ActivityCompat.OnRequestPermissionsResultCallback
+    lateinit var observer: PermissionObserver
+    lateinit var multipleObserver: MultiplePermissionObserver
 
-    fun setCallback(mCallback: ActivityCompat.OnRequestPermissionsResultCallback) {
-        callback = mCallback
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        observer = PermissionObserver(activityResultRegistry)
+        multipleObserver = MultiplePermissionObserver(activityResultRegistry)
+        lifecycle.addObserver(observer)
+        lifecycle.addObserver(multipleObserver)
     }
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (this::callback.isInitialized) {
-            callback.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        }
-
-    }
 }

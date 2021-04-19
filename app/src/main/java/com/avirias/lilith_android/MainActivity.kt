@@ -1,10 +1,12 @@
 package com.avirias.lilith_android
 
+import android.Manifest
 import android.os.Bundle
 import android.util.Log
 import com.avirias.lilith_android.databinding.ActivityMainBinding
 import com.eden.lilith.LilithActivity
-import com.eden.lilith.utils.*
+import com.eden.lilith.utils.requestMultiplePermissions
+import kotlinx.coroutines.flow.collect
 
 class MainActivity : LilithActivity() {
 
@@ -16,34 +18,13 @@ class MainActivity : LilithActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val handler = object : PermissionHandler {
-            override fun onPermissionDenied(permissionDenied: List<String>) {
 
-            }
-        }
 
         binding.button.setOnClickListener {
-//            navigateTo(SecondActivity::class.java) {
-//                it.apply {
-//                    putExtra("Hello", "World")
-//                    putExtra("New", 69)
-//                    putExtra("isLiked", false)
-//                }
-//            }.go()
-
-
-
-            ifOnline {
-                Log.d(TAG, "onCreate: network connected")
-            }.otherWise {
-                Log.d(TAG, "onCreate: network not connected")
+            requestMultiplePermissions(arrayOf(Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO)) {
+                Log.d(TAG, "onCreate: all permissions granted")
             }
-
-
         }
-
-
-
 
 
     }

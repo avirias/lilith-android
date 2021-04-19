@@ -1,7 +1,7 @@
 package com.eden.lilith.utils
 
-import androidx.biometric.BiometricManager
-import androidx.biometric.BiometricManager.Authenticators.*
+import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG
+import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_WEAK
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import com.eden.lilith.LilithActivity
