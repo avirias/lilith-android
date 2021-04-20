@@ -37,8 +37,6 @@ class NavigationBuilder(
     private val from: LilithActivity,
     private val intent: Intent
 ) {
-    fun go() {
-        from.startActivity(intent)
-    }
+    fun go() = from.startActivity(intent)
 }
 

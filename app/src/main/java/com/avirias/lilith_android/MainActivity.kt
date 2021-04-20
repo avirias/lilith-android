@@ -6,7 +6,6 @@ import android.util.Log
 import com.avirias.lilith_android.databinding.ActivityMainBinding
 import com.eden.lilith.LilithActivity
 import com.eden.lilith.utils.requestMultiplePermissions
-import kotlinx.coroutines.flow.collect
 
 class MainActivity : LilithActivity() {
 

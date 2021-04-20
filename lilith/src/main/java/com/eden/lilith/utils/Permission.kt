@@ -1,6 +1,7 @@
 package com.eden.lilith.utils
 
 import android.content.pm.PackageManager
+import android.provider.FontsContract
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.lifecycleScope
 import com.eden.lilith.LilithActivity
@@ -8,6 +9,7 @@ import kotlinx.coroutines.flow.collect
 
 fun LilithActivity.requestPermission(
     permission: String,
+    rationalRequestCallback: () -> Unit = { showRequestPermissionRationale() },
     onPermissionGranted: () -> Unit
 ) {
 
@@ -15,7 +17,7 @@ fun LilithActivity.requestPermission(
     when {
         ActivityCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED ->
             onPermissionGranted()
-        shouldShowRequestPermissionRationale(permission) -> showRequestPermissionRationale()
+        shouldShowRequestPermissionRationale(permission) -> rationalRequestCallback()
         else -> {
             observer.requestPermission(permission)
             lifecycleScope.launchWhenCreated {
@@ -31,20 +33,19 @@ fun LilithActivity.requestPermission(
 
 fun LilithActivity.requestMultiplePermissions(
     permissions: Array<String>,
+    rationalRequestCallback: () -> Unit = { showRequestPermissionRationale() },
     onAllPermissionsGranted: () -> Unit
 ) {
     var haveAllPermission = true
     var shouldShowRational = false
 
     permissions.forEach {
-        if (haveAllPermission) {
+        if (haveAllPermission)
             if (ActivityCompat.checkSelfPermission(this, it) != PackageManager.PERMISSION_GRANTED) {
                 haveAllPermission = false
             }
-        }
-        if (!shouldShowRational) {
+        if (!shouldShowRational)
             shouldShowRational = shouldShowRequestPermissionRationale(it)
-        }
     }
 
     if (!haveAllPermission && !shouldShowRational) {
@@ -58,10 +59,6 @@ fun LilithActivity.requestMultiplePermissions(
         }
     }
 
-    if (shouldShowRational) {
-        showRequestPermissionRationale()
-    }
+    if (shouldShowRational) rationalRequestCallback()
 
 }
-
-

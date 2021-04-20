@@ -1,5 +1,6 @@
 package com.avirias.lilith_android
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
@@ -11,6 +12,7 @@ import com.eden.lilith.utils.getBoolean
 import com.eden.lilith.utils.getInt
 import com.eden.lilith.utils.getString
 
+@SuppressLint("SetTextI18n")
 class SecondActivity : LilithActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
