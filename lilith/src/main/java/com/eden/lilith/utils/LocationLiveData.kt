@@ -4,7 +4,10 @@ import android.content.Context
 import android.location.Location
 import android.os.Looper
 import androidx.lifecycle.LiveData
-import com.google.android.gms.location.*
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationResult
+import com.google.android.gms.location.LocationServices
 
 class LocationLiveData(context: Context) : LiveData<Location>() {
 
@@ -29,11 +32,6 @@ class LocationLiveData(context: Context) : LiveData<Location>() {
 
     override fun onActive() {
         super.onActive()
-        locationProvider.removeLocationUpdates(locationCallback)
-    }
-
-    override fun onInactive() {
-        super.onInactive()
         locationProvider.lastLocation
             .addOnSuccessListener {
                 it?.let {
@@ -41,6 +39,11 @@ class LocationLiveData(context: Context) : LiveData<Location>() {
                 }
             }
         startUpdates()
+    }
+
+    override fun onInactive() {
+        super.onInactive()
+        locationProvider.removeLocationUpdates(locationCallback)
     }
 
     companion object {

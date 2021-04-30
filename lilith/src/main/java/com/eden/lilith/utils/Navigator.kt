@@ -3,14 +3,14 @@ package com.eden.lilith.utils
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import com.eden.lilith.LilithActivity
+import androidx.activity.ComponentActivity
 
-fun LilithActivity.navigateTo(
+fun ComponentActivity.navigateTo(
     to: Class<out Activity>,
     intent: Intent = Intent(this, to)
 ) = startActivity(intent)
 
-fun LilithActivity.navigateTo(
+fun ComponentActivity.navigateTo(
     to: Class<out Activity>,
     extras: Bundle
 ) {
@@ -20,7 +20,7 @@ fun LilithActivity.navigateTo(
     startActivity(intent)
 }
 
-fun LilithActivity.navigateTo(
+fun ComponentActivity.navigateTo(
     to: Class<out Activity>,
     intent: (Intent) -> Intent
 ): NavigationBuilder {
@@ -34,7 +34,7 @@ fun LilithActivity.navigateTo(
 
 
 class NavigationBuilder(
-    private val from: LilithActivity,
+    private val from: ComponentActivity,
     private val intent: Intent
 ) {
     fun go() = from.startActivity(intent)

@@ -4,9 +4,9 @@ import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG
 import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_WEAK
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
-import com.eden.lilith.LilithActivity
+import androidx.fragment.app.FragmentActivity
 
-fun LilithActivity.biometricAuth(
+fun FragmentActivity.biometricAuth(
     title: String,
     subtitle: String,
     listener: BiometricPrompt.AuthenticationCallback

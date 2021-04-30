@@ -2,12 +2,12 @@ package com.eden.lilith.utils
 
 import android.database.Cursor
 import android.provider.ContactsContract
+import androidx.activity.ComponentActivity
 import androidx.annotation.RequiresPermission
-import com.eden.lilith.LilithActivity
 
 
 @RequiresPermission(android.Manifest.permission.READ_CONTACTS)
-fun LilithActivity.getContacts(
+fun ComponentActivity.getContacts(
     callback: (List<Contact>) -> Unit
 ) {
 

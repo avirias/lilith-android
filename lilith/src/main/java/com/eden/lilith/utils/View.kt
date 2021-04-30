@@ -1,8 +1,8 @@
 package com.eden.lilith.utils
 
-import com.eden.lilith.LilithActivity
+import androidx.activity.ComponentActivity
 
-fun LilithActivity.showRequestPermissionRationale() {
+fun ComponentActivity.showRequestPermissionRationale() {
 
     showErrorDialog(
         "Need this permission, Please allow in app settings",

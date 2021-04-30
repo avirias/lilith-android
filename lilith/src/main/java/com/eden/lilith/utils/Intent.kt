@@ -1,27 +1,28 @@
 package com.eden.lilith.utils
 
-import com.eden.lilith.LilithActivity
+import androidx.activity.ComponentActivity
 
-fun LilithActivity.getString(
+
+fun ComponentActivity.getString(
     key: String
 ) = intent.getStringExtra(key)
 
-fun LilithActivity.getBoolean(
+fun ComponentActivity.getBoolean(
     key: String,
     defaultValue: Boolean = false
 ) = intent.getBooleanExtra(key, defaultValue)
 
-fun LilithActivity.getLong(
+fun ComponentActivity.getLong(
     key: String,
     defaultValue: Long = 0L
 ) = intent.getLongExtra(key, defaultValue)
 
-fun LilithActivity.getDouble(
+fun ComponentActivity.getDouble(
     key: String,
     defaultValue: Double = 0.0
 ) = intent.getDoubleExtra(key, defaultValue)
 
-fun LilithActivity.getInt(
+fun ComponentActivity.getInt(
     key: String,
     defaultValue: Int = 0
 ) = intent.getIntExtra(key, defaultValue)

@@ -15,14 +15,15 @@ class PermissionObserver(
 
     private lateinit var getSinglePermission: ActivityResultLauncher<String>
 
-    private val _isPermissionGranted = MutableStateFlow(false)
-    val singlePermissionObserver: StateFlow<Boolean> = _isPermissionGranted
+    private val _isPermissionGranted: MutableStateFlow<Boolean?> = MutableStateFlow(null)
+    val singlePermissionObserver: StateFlow<Boolean?> = _isPermissionGranted
 
     override fun onCreate(owner: LifecycleOwner) {
         getSinglePermission = registry.register("single", owner, RequestPermission()) {
             _isPermissionGranted.value = it
         }
     }
+
 
     fun requestPermission(permission: String) = getSinglePermission.launch(permission)
 
@@ -44,5 +45,6 @@ class MultiplePermissionObserver(
         }
     }
 
-    fun requestMultiplePermission(permissions: Array<String>) = getMultiplePermissions.launch(permissions)
+    fun requestMultiplePermission(permissions: Array<String>) =
+        getMultiplePermissions.launch(permissions)
 }

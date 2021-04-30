@@ -1,13 +1,11 @@
 package com.eden.lilith.utils
 
 import android.hardware.Sensor
-import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
-import androidx.activity.OnBackPressedCallback
-import com.eden.lilith.LilithActivity
+import androidx.activity.ComponentActivity
 
-fun LilithActivity.sensors(
+fun ComponentActivity.sensors(
     callback: (List<Sensor>) -> Unit
 ) {
     val sensorManager = this.getSystemService(SensorManager::class.java)
@@ -21,7 +19,7 @@ fun LilithActivity.sensors(
 
 }
 
-fun LilithActivity.getSensor(
+fun ComponentActivity.getSensor(
     sensorType: Int,
     sensorListener: SensorEventListener
 ) {

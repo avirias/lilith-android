@@ -2,12 +2,12 @@ package com.eden.lilith.utils
 
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import androidx.activity.ComponentActivity
 import androidx.annotation.RequiresPermission
-import com.eden.lilith.LilithActivity
 
 
 @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
-fun LilithActivity.ifOnline(
+fun ComponentActivity.ifOnline(
     callback: () -> Unit
 ): LConnectivityManger {
 

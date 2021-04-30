@@ -1,8 +1,6 @@
 package com.eden.lilith.utils
 
 import android.graphics.Bitmap
-import android.widget.Toast
-import com.eden.lilith.LilithActivity
 import java.io.File
 import java.io.FileOutputStream
 import java.util.*

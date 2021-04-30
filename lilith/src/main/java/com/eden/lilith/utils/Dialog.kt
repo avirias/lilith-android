@@ -1,10 +1,10 @@
 package com.eden.lilith.utils
 
 import android.app.AlertDialog
-import com.eden.lilith.LilithActivity
+import androidx.activity.ComponentActivity
 import java.lang.Exception
 
-fun LilithActivity.showErrorDialog(
+fun ComponentActivity.showErrorDialog(
     message: String,
     buttonText: String,
     onClicked: () -> Unit
@@ -15,7 +15,7 @@ fun LilithActivity.showErrorDialog(
     )
 }
 
-fun LilithActivity.showMessageDialog(
+fun ComponentActivity.showMessageDialog(
     title: String,
     message: String,
     buttonText: String,
