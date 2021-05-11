@@ -4,16 +4,15 @@ import android.Manifest
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.flowWithLifecycle
-import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.*
 import com.avirias.lilith_android.databinding.ActivityMainBinding
-import com.eden.lilith.utils.locationFlow
-import com.eden.lilith.utils.permissions
+import com.eden.lilith.utils.*
 import com.google.android.gms.location.LocationServices
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 
 @ExperimentalCoroutinesApi
 class MainActivity : AppCompatActivity() {
@@ -27,7 +26,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val locationPermission by permissions {
-        if (it.filterValues { e -> e.not() }.isEmpty()) {
+        if (it.isAllGranted()) {
             getLocation()
         }
     }
@@ -38,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.button.setOnClickListener {
-            locationPermission.launch(
+            locationPermission.request(
                 arrayOf(
                     Manifest.permission.ACCESS_COARSE_LOCATION,
                     Manifest.permission.ACCESS_FINE_LOCATION
@@ -55,7 +54,6 @@ class MainActivity : AppCompatActivity() {
             .onEach {
                 Log.d(TAG, "onCreate: location => lat: ${it.latitude}, long: ${it.longitude}")
             }.launchIn(lifecycleScope)
-
     }
 
     companion object {

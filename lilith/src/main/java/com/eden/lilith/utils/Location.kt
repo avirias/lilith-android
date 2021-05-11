@@ -10,9 +10,13 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
+import com.google.android.gms.tasks.CancellationToken
+import com.google.android.gms.tasks.CancellationTokenSource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlin.coroutines.resumeWithException
 
 @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])
 fun ComponentActivity.getLocation(
@@ -55,3 +59,23 @@ fun FusedLocationProviderClient.locationFlow(
         removeLocationUpdates(callback)
     }
 }
+
+@ExperimentalCoroutinesApi
+suspend fun FusedLocationProviderClient.currentLocation() =
+    suspendCancellableCoroutine<Location> { cont ->
+
+        val cancellationToken = CancellationTokenSource()
+
+        getCurrentLocation(
+            LocationRequest.PRIORITY_HIGH_ACCURACY,
+            cancellationToken.token
+        ).addOnCompleteListener { task ->
+            if (task.isSuccessful)
+                cont.resume(task.result, null)
+            task.exception?.let { cont.resumeWithException(it) }
+        }
+
+        cont.invokeOnCancellation {
+            cancellationToken.cancel()
+        }
+    }

@@ -1,6 +1,7 @@
 package com.eden.lilith.utils
 
 import androidx.activity.ComponentActivity
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts.RequestMultiplePermissions
 import androidx.activity.result.contract.ActivityResultContracts.RequestPermission
 
@@ -17,3 +18,6 @@ fun ComponentActivity.permissions(
     onResult.invoke(it)
 })
 
+fun Map<String, Boolean>.isAllGranted() = filterValues { it.not() }.isEmpty()
+
+fun <I> ActivityResultLauncher<I>.request(input: I) = launch(input)
